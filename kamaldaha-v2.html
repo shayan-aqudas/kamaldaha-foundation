@@ -1,0 +1,1108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kamaldaha Foundation – Helping People. Changing Lives.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=DM+Sans:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@1,400;1,600&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --navy:   #0f2d4a;
+      --navy2:  #1a4268;
+      --green:  #2a6b4a;
+      --green2: #3a8a60;
+      --gold:   #e6941a;
+      --gold2:  #f4b347;
+      --teal:   #1d7a8c;
+      --rose:   #a33040;
+      --purple: #5b3a8c;
+      --cream:  #fdf8f2;
+      --white:  #ffffff;
+      --text:   #1a2836;
+      --muted:  #5a6e7f;
+      --border: rgba(26,66,104,0.10);
+      --r-sm:   10px;
+      --r-md:   18px;
+      --r-lg:   28px;
+      --r-xl:   40px;
+      --shadow: 0 8px 40px rgba(15,45,74,0.10);
+      --shadow2:0 24px 64px rgba(15,45,74,0.15);
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 999;
+      background: rgba(253,248,242,0.92);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 5%;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 72px;
+      transition: box-shadow .3s;
+    }
+    nav.scrolled { box-shadow: 0 4px 32px rgba(15,45,74,0.10); }
+    .nav-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+    .nav-logo img { height: 44px; width: 44px; object-fit: contain; border-radius: 50%; }
+    .nav-logo-text { line-height: 1; }
+    .nav-logo-name { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 1.05rem; color: var(--navy); letter-spacing: 0.01em; }
+    .nav-logo-sub  { font-size: 0.65rem; font-weight: 500; color: var(--green); letter-spacing: 0.12em; text-transform: uppercase; }
+    .nav-links { display: flex; align-items: center; gap: 32px; list-style: none; }
+    .nav-links a { text-decoration: none; font-size: 0.88rem; font-weight: 500; color: var(--muted); transition: color .2s; }
+    .nav-links a:hover { color: var(--navy); }
+    .btn-nav {
+      background: var(--gold); color: var(--white);
+      padding: 10px 22px; border-radius: var(--r-sm);
+      font-weight: 600; font-size: 0.88rem;
+      text-decoration: none; transition: all .2s;
+      box-shadow: 0 4px 16px rgba(230,148,26,0.30);
+    }
+    .btn-nav:hover { background: var(--gold2); transform: translateY(-1px); }
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; }
+    .hamburger span { width: 24px; height: 2px; background: var(--navy); border-radius: 2px; transition: .3s; }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy2) 55%, #0d3d28 100%);
+      position: relative; overflow: hidden;
+      display: flex; align-items: center;
+      padding: 100px 5% 60px;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='40' cy='40' r='1.5' fill='rgba(255,255,255,0.04)'/%3E%3C/svg%3E") repeat;
+    }
+    .hero-blob {
+      position: absolute; border-radius: 50%;
+      filter: blur(80px); opacity: 0.18; pointer-events: none;
+    }
+    .blob1 { width: 600px; height: 600px; background: var(--gold); top: -200px; right: -100px; }
+    .blob2 { width: 400px; height: 400px; background: var(--green2); bottom: -150px; left: -80px; }
+    .blob3 { width: 300px; height: 300px; background: var(--teal); top: 40%; right: 20%; }
+
+    .hero-inner {
+      position: relative; z-index: 1;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 60px; align-items: center; max-width: 1200px; margin: 0 auto; width: 100%;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(230,148,26,0.18); border: 1px solid rgba(230,148,26,0.35);
+      color: var(--gold2); padding: 6px 16px; border-radius: 50px;
+      font-size: 0.78rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
+      margin-bottom: 24px;
+      animation: fadeUp 0.6s ease both;
+    }
+    .hero-badge .dot { width: 7px; height: 7px; background: var(--gold2); border-radius: 50%; animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1}50%{opacity:0.4} }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.4rem, 4.5vw, 4rem);
+      font-weight: 900; line-height: 1.1;
+      color: var(--white); margin-bottom: 20px;
+      animation: fadeUp 0.7s ease 0.1s both;
+    }
+    h1 span { color: var(--gold2); font-style: italic; }
+    .hero-sub {
+      font-size: 1.05rem; color: rgba(255,255,255,0.72);
+      line-height: 1.75; margin-bottom: 36px;
+      animation: fadeUp 0.7s ease 0.2s both;
+    }
+    .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; animation: fadeUp 0.7s ease 0.3s both; }
+    .btn-primary {
+      background: var(--gold); color: var(--white);
+      padding: 14px 28px; border-radius: var(--r-sm);
+      font-weight: 700; font-size: 0.95rem; text-decoration: none;
+      box-shadow: 0 6px 24px rgba(230,148,26,0.40);
+      transition: all .25s; display: flex; align-items: center; gap: 8px;
+    }
+    .btn-primary:hover { background: var(--gold2); transform: translateY(-2px); box-shadow: 0 10px 32px rgba(230,148,26,0.50); }
+    .btn-outline {
+      border: 1.5px solid rgba(255,255,255,0.30); color: var(--white);
+      padding: 14px 28px; border-radius: var(--r-sm);
+      font-weight: 600; font-size: 0.95rem; text-decoration: none;
+      transition: all .25s; display: flex; align-items: center; gap: 8px;
+    }
+    .btn-outline:hover { background: rgba(255,255,255,0.10); border-color: rgba(255,255,255,0.60); }
+
+    .hero-stats {
+      display: flex; gap: 28px; margin-top: 44px;
+      animation: fadeUp 0.7s ease 0.4s both;
+    }
+    .stat { }
+    .stat-num { font-family: 'Playfair Display', serif; font-size: 1.9rem; font-weight: 700; color: var(--gold2); }
+    .stat-lbl { font-size: 0.75rem; color: rgba(255,255,255,0.55); font-weight: 500; text-transform: uppercase; letter-spacing: 0.06em; }
+    .stat-div { width: 1px; background: rgba(255,255,255,0.15); }
+
+    .hero-visual {
+      display: flex; justify-content: center; align-items: center;
+      position: relative; animation: fadeUp 0.8s ease 0.2s both;
+    }
+    .hero-logo-ring {
+      width: 380px; height: 380px; border-radius: 50%;
+      background: rgba(255,255,255,0.06);
+      border: 1.5px solid rgba(255,255,255,0.12);
+      display: flex; align-items: center; justify-content: center;
+      position: relative;
+      animation: spin-slow 25s linear infinite;
+    }
+    @keyframes spin-slow { to { transform: rotate(360deg); } }
+    .hero-logo-ring::before {
+      content: '';
+      position: absolute; inset: 20px; border-radius: 50%;
+      border: 1px dashed rgba(230,148,26,0.30);
+    }
+    .hero-logo-inner {
+      width: 280px; height: 280px; border-radius: 50%;
+      background: rgba(255,255,255,0.08);
+      display: flex; align-items: center; justify-content: center;
+      animation: spin-slow 25s linear infinite reverse;
+      overflow: hidden;
+    }
+    .hero-logo-inner img { width: 220px; height: 220px; object-fit: contain; border-radius: 50%; }
+
+    /* ── SECTION HEADER ── */
+    .section { padding: 90px 5%; }
+    .section-inner { max-width: 1200px; margin: 0 auto; }
+    .section-tag {
+      display: inline-block; font-size: 0.73rem; font-weight: 700;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--green); background: rgba(42,107,74,0.10);
+      padding: 5px 14px; border-radius: 50px; margin-bottom: 14px;
+    }
+    h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      font-weight: 800; line-height: 1.15;
+      color: var(--navy); margin-bottom: 14px;
+    }
+    h2 em { color: var(--green); font-style: italic; }
+    .section-lead { font-size: 1.05rem; color: var(--muted); max-width: 560px; line-height: 1.75; }
+    .section-head { text-align: center; margin-bottom: 60px; }
+    .section-head .section-lead { margin: 0 auto; }
+
+    /* ── MISSION STRIP ── */
+    .mission-strip {
+      background: var(--green);
+      padding: 28px 5%;
+    }
+    .mission-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-around;
+      gap: 20px; flex-wrap: wrap;
+    }
+    .mission-item {
+      display: flex; align-items: center; gap: 12px;
+      color: rgba(255,255,255,0.95); font-size: 0.9rem; font-weight: 500;
+    }
+    .mission-icon { font-size: 1.3rem; }
+    .mission-sep { width: 1px; height: 32px; background: rgba(255,255,255,0.25); }
+
+    /* ── PROGRAMS ── */
+    .programs { background: var(--white); }
+    .program-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .program-card {
+      border-radius: var(--r-md);
+      padding: 32px 28px 28px;
+      position: relative; overflow: hidden;
+      cursor: pointer;
+      transition: transform .3s, box-shadow .3s;
+      border: 1px solid var(--border);
+    }
+    .program-card:hover { transform: translateY(-6px); box-shadow: var(--shadow2); }
+    .program-card::before {
+      content: ''; position: absolute; inset: 0;
+      opacity: 0.07; transition: opacity .3s;
+    }
+    .program-card:hover::before { opacity: 0.12; }
+    .pc-1 { background: linear-gradient(135deg, #e8f4f0, #fff); border-top: 3px solid var(--green2); }
+    .pc-1::before { background: var(--green); }
+    .pc-2 { background: linear-gradient(135deg, #fdf3e5, #fff); border-top: 3px solid var(--gold); }
+    .pc-2::before { background: var(--gold); }
+    .pc-3 { background: linear-gradient(135deg, #e6f4f8, #fff); border-top: 3px solid var(--teal); }
+    .pc-3::before { background: var(--teal); }
+    .pc-4 { background: linear-gradient(135deg, #f0eaf8, #fff); border-top: 3px solid var(--purple); }
+    .pc-4::before { background: var(--purple); }
+    .pc-5 { background: linear-gradient(135deg, #fdeaec, #fff); border-top: 3px solid var(--rose); }
+    .pc-5::before { background: var(--rose); }
+    .pc-6 { background: linear-gradient(135deg, #e8f4f0, #fff); border-top: 3px solid var(--navy2); }
+    .pc-6::before { background: var(--navy2); }
+
+    .prog-icon {
+      width: 56px; height: 56px; border-radius: var(--r-sm);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem; margin-bottom: 20px;
+    }
+    .pi-1 { background: rgba(42,107,74,0.12); }
+    .pi-2 { background: rgba(230,148,26,0.12); }
+    .pi-3 { background: rgba(29,122,140,0.12); }
+    .pi-4 { background: rgba(91,58,140,0.12); }
+    .pi-5 { background: rgba(163,48,64,0.12); }
+    .pi-6 { background: rgba(26,66,104,0.12); }
+    .prog-title { font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 700; color: var(--navy); margin-bottom: 8px; }
+    .prog-desc { font-size: 0.88rem; color: var(--muted); line-height: 1.65; margin-bottom: 18px; }
+    .prog-link { font-size: 0.82rem; font-weight: 600; color: var(--green); text-decoration: none; display: flex; align-items: center; gap: 5px; transition: gap .2s; }
+    .prog-link:hover { gap: 10px; }
+
+    /* ── IMPACT ── */
+    .impact { background: linear-gradient(135deg, var(--navy) 0%, #0d3d28 100%); position: relative; overflow: hidden; }
+    .impact::before {
+      content: ''; position: absolute; inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='30' cy='30' r='1' fill='rgba(255,255,255,0.03)'/%3E%3C/svg%3E") repeat;
+    }
+    .impact .section-inner { position: relative; z-index: 1; }
+    .impact .section-tag { background: rgba(230,148,26,0.20); color: var(--gold2); }
+    .impact h2 { color: var(--white); }
+    .impact .section-lead { color: rgba(255,255,255,0.65); }
+    .impact-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 24px; margin-top: 60px;
+    }
+    .impact-card {
+      text-align: center; padding: 36px 20px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.10);
+      border-radius: var(--r-md);
+      transition: background .3s, transform .3s;
+    }
+    .impact-card:hover { background: rgba(255,255,255,0.09); transform: translateY(-4px); }
+    .impact-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem; font-weight: 900; color: var(--gold2);
+      line-height: 1; margin-bottom: 6px;
+    }
+    .impact-label { font-size: 0.85rem; color: rgba(255,255,255,0.65); font-weight: 500; letter-spacing: 0.03em; }
+
+    /* ── DONATE ── */
+    .donate { background: var(--cream); }
+    .donate-inner {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 60px; align-items: start;
+    }
+    .donate-left h2 { margin-bottom: 16px; }
+    .donate-left p { color: var(--muted); line-height: 1.75; margin-bottom: 30px; }
+    .upi-box {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--r-md);
+      padding: 28px; text-align: center;
+    }
+    .upi-label { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.10em; text-transform: uppercase; color: var(--muted); margin-bottom: 18px; }
+    .qr-placeholder {
+      width: 160px; height: 160px; margin: 0 auto 16px;
+      background: linear-gradient(135deg, #f0f4f8, #e8eef4);
+      border-radius: 12px; display: flex; align-items: center; justify-content: center;
+      border: 2px dashed var(--border); font-size: 2.5rem;
+    }
+    .upi-id { font-family: 'DM Sans', sans-serif; font-size: 0.9rem; font-weight: 600; color: var(--navy); background: var(--cream); padding: 8px 16px; border-radius: var(--r-sm); display: inline-block; }
+
+    .donate-card {
+      background: var(--white);
+      border-radius: var(--r-lg);
+      padding: 36px 32px;
+      box-shadow: var(--shadow);
+    }
+    .donate-tabs { display: flex; gap: 4px; background: var(--cream); border-radius: var(--r-sm); padding: 4px; margin-bottom: 28px; }
+    .dtab {
+      flex: 1; padding: 10px; border-radius: 8px;
+      border: none; background: none; cursor: pointer;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.85rem; font-weight: 600; color: var(--muted);
+      transition: all .2s;
+    }
+    .dtab.active { background: var(--white); color: var(--navy); box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+    .amount-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 16px; }
+    .amt-btn {
+      padding: 12px; border: 1.5px solid var(--border); border-radius: var(--r-sm);
+      background: none; cursor: pointer; font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem; font-weight: 700; color: var(--navy);
+      transition: all .2s;
+    }
+    .amt-btn:hover, .amt-btn.active { border-color: var(--green2); background: rgba(42,107,74,0.07); color: var(--green); }
+    .custom-input {
+      width: 100%; padding: 13px 16px;
+      border: 1.5px solid var(--border); border-radius: var(--r-sm);
+      font-family: 'DM Sans', sans-serif; font-size: 0.95rem; color: var(--text);
+      background: var(--cream); outline: none; margin-bottom: 20px;
+      transition: border-color .2s;
+    }
+    .custom-input:focus { border-color: var(--green2); background: var(--white); }
+    .donate-note { font-size: 0.78rem; color: var(--muted); margin-bottom: 20px; display: flex; gap: 8px; align-items: flex-start; }
+    .btn-donate {
+      width: 100%; padding: 15px;
+      background: linear-gradient(135deg, var(--green), var(--green2));
+      color: var(--white); border: none; border-radius: var(--r-sm);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 1rem; font-weight: 700; cursor: pointer;
+      box-shadow: 0 6px 24px rgba(42,107,74,0.30);
+      transition: all .25s; display: flex; align-items: center; justify-content: center; gap: 10px;
+    }
+    .btn-donate:hover { transform: translateY(-2px); box-shadow: 0 10px 32px rgba(42,107,74,0.40); }
+
+    /* ── MONTHLY BANNER ── */
+    .monthly-banner {
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 20px;
+      background: linear-gradient(135deg, var(--navy), var(--green));
+      border-radius: var(--r-md); padding: 24px 28px;
+      margin-bottom: 48px;
+    }
+    .mb-left { display: flex; align-items: center; gap: 16px; }
+    .mb-icon { font-size: 2.2rem; }
+    .mb-title { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; color: var(--white); }
+    .mb-sub { font-size: 0.83rem; color: rgba(255,255,255,0.70); margin-top: 3px; }
+    .mb-members { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; }
+    .mb-avatars { display: flex; }
+    .mav {
+      width: 32px; height: 32px; border-radius: 50%;
+      color: var(--white); font-size: 0.75rem; font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+      margin-left: -8px; border: 2px solid rgba(255,255,255,0.30);
+    }
+    .mav:first-child { margin-left: 0; }
+    .mav-more { background: rgba(255,255,255,0.20); font-size: 0.68rem; }
+    .mb-count { font-size: 0.75rem; color: rgba(255,255,255,0.65); }
+    /* ── IMPACT PILLS ── */
+    .impact-pills { display: flex; flex-direction: column; gap: 10px; margin-bottom: 28px; }
+    .impact-pill {
+      display: flex; align-items: center; gap: 14px;
+      background: var(--white); border: 1px solid var(--border);
+      border-radius: var(--r-sm); padding: 12px 16px;
+      transition: border-color .2s, box-shadow .2s;
+    }
+    .impact-pill:hover { border-color: var(--green2); box-shadow: 0 4px 16px rgba(42,107,74,0.10); }
+    .impact-pill.ip-highlight { border-color: var(--gold); background: rgba(230,148,26,0.05); }
+    .ip-amt { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 1rem; color: var(--green); min-width: 70px; }
+    .ip-desc { font-size: 0.83rem; color: var(--muted); }
+    /* ── UPI BADGES ── */
+    .upi-badge {
+      background: var(--cream); border: 1px solid var(--border);
+      border-radius: 50px; padding: 4px 12px;
+      font-size: 0.73rem; font-weight: 600; color: var(--navy);
+    }
+    /* ── PLAN GRID ── */
+    .plan-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px; }
+    .plan-card {
+      border: 2px solid var(--border); border-radius: var(--r-md);
+      padding: 20px 16px; text-align: center; cursor: pointer;
+      position: relative; transition: all .25s; background: var(--cream);
+    }
+    .plan-card:hover { border-color: var(--green2); background: var(--white); }
+    .plan-card.active { border-color: var(--green); background: var(--white); box-shadow: 0 0 0 3px rgba(42,107,74,0.12); }
+    .plan-badge {
+      position: absolute; top: -11px; left: 50%; transform: translateX(-50%);
+      background: var(--green); color: var(--white);
+      font-size: 0.66rem; font-weight: 700; letter-spacing: 0.05em;
+      padding: 3px 10px; border-radius: 50px; white-space: nowrap;
+    }
+    .plan-amt { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 900; color: var(--navy); line-height: 1.1; margin-top: 8px; }
+    .plan-freq { font-size: 0.75rem; color: var(--muted); font-weight: 500; margin-bottom: 10px; }
+    .plan-desc { font-size: 0.78rem; color: var(--text); line-height: 1.5; margin-bottom: 8px; }
+    .plan-year { font-size: 0.72rem; background: rgba(42,107,74,0.08); color: var(--green); border-radius: 50px; padding: 3px 10px; display: inline-block; font-weight: 600; }
+    .plan-card.active .plan-amt { color: var(--green); }
+    /* ── MEMBER FORM ── */
+    .member-header { margin-bottom: 20px; }
+    .member-badge {
+      display: inline-flex; align-items: center; gap: 7px;
+      background: rgba(42,107,74,0.10); border: 1px solid rgba(42,107,74,0.20);
+      color: var(--green); border-radius: 50px;
+      font-size: 0.78rem; font-weight: 700; padding: 5px 14px; margin-bottom: 8px;
+    }
+    .member-sub { font-size: 0.82rem; color: var(--muted); line-height: 1.5; }
+    .member-form { display: flex; flex-direction: column; gap: 10px; margin-bottom: 16px; }
+    .member-form .custom-input { margin-bottom: 0; width: 100%; }
+    .form-row { display: flex; gap: 10px; }
+    /* ── TRUST ROW ── */
+    .trust-row {
+      display: flex; align-items: center; justify-content: center;
+      gap: 8px; flex-wrap: wrap;
+      font-size: 0.73rem; color: var(--muted); margin-top: 12px;
+    }
+
+    /* ── HOW IT WORKS ── */
+    .how { background: var(--white); }
+    .how-steps {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 0; position: relative;
+    }
+    .how-steps::before {
+      content: ''; position: absolute;
+      top: 44px; left: 12%; right: 12%; height: 2px;
+      background: linear-gradient(to right, var(--green), var(--gold));
+      z-index: 0;
+    }
+    .how-step { text-align: center; padding: 0 20px; position: relative; z-index: 1; }
+    .step-num {
+      width: 52px; height: 52px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--navy), var(--navy2));
+      color: var(--white); font-family: 'Playfair Display', serif;
+      font-size: 1.1rem; font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 20px; position: relative; z-index: 1;
+      box-shadow: 0 4px 20px rgba(15,45,74,0.25);
+    }
+    .step-title { font-weight: 700; color: var(--navy); margin-bottom: 8px; font-size: 0.95rem; }
+    .step-desc { font-size: 0.83rem; color: var(--muted); line-height: 1.6; }
+
+    /* ── TESTIMONIALS ── */
+    .testimonials { background: var(--cream); }
+    .test-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .test-card {
+      background: var(--white); border-radius: var(--r-md);
+      padding: 30px 26px; border: 1px solid var(--border);
+      box-shadow: var(--shadow); transition: transform .3s;
+    }
+    .test-card:hover { transform: translateY(-4px); }
+    .test-quote {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem; font-style: italic; line-height: 1.65;
+      color: var(--text); margin-bottom: 20px;
+    }
+    .test-author { display: flex; align-items: center; gap: 12px; }
+    .test-avatar {
+      width: 42px; height: 42px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem; font-weight: 700; color: var(--white);
+      flex-shrink: 0;
+    }
+    .ta-1 { background: linear-gradient(135deg, var(--green), var(--teal)); }
+    .ta-2 { background: linear-gradient(135deg, var(--gold), var(--rose)); }
+    .ta-3 { background: linear-gradient(135deg, var(--navy), var(--purple)); }
+    .test-name { font-weight: 700; font-size: 0.9rem; color: var(--navy); }
+    .test-loc  { font-size: 0.78rem; color: var(--muted); }
+    .stars { color: var(--gold); margin-bottom: 14px; font-size: 0.9rem; }
+
+    /* ── JOIN ── */
+    .join {
+      background: linear-gradient(135deg, var(--green) 0%, var(--navy) 100%);
+      text-align: center; padding: 90px 5%;
+      position: relative; overflow: hidden;
+    }
+    .join::before {
+      content: ''; position: absolute; inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='50' cy='50' r='1' fill='rgba(255,255,255,0.04)'/%3E%3C/svg%3E") repeat;
+    }
+    .join-inner { position: relative; z-index: 1; max-width: 700px; margin: 0 auto; }
+    .join h2 { color: var(--white); margin-bottom: 16px; }
+    .join p { color: rgba(255,255,255,0.75); font-size: 1.05rem; line-height: 1.75; margin-bottom: 36px; }
+    .join-actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+    .btn-white {
+      background: var(--white); color: var(--navy);
+      padding: 14px 28px; border-radius: var(--r-sm);
+      font-weight: 700; font-size: 0.95rem; text-decoration: none;
+      box-shadow: 0 6px 24px rgba(0,0,0,0.15);
+      transition: all .25s; display: flex; align-items: center; gap: 8px;
+    }
+    .btn-white:hover { transform: translateY(-2px); box-shadow: 0 10px 32px rgba(0,0,0,0.25); }
+    .btn-ghost-white {
+      border: 1.5px solid rgba(255,255,255,0.40); color: var(--white);
+      padding: 14px 28px; border-radius: var(--r-sm);
+      font-weight: 600; font-size: 0.95rem; text-decoration: none;
+      transition: all .25s; display: flex; align-items: center; gap: 8px;
+    }
+    .btn-ghost-white:hover { background: rgba(255,255,255,0.12); border-color: rgba(255,255,255,0.70); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--navy);
+      color: rgba(255,255,255,0.75);
+      padding: 64px 5% 28px;
+    }
+    .footer-grid {
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 48px; max-width: 1200px; margin: 0 auto 48px;
+    }
+    .footer-brand { }
+    .footer-logo { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; }
+    .footer-logo img { height: 40px; width: 40px; object-fit: contain; border-radius: 50%; }
+    .footer-logo-name { font-family: 'Playfair Display', serif; font-weight: 700; color: var(--white); font-size: 1rem; }
+    .footer-desc { font-size: 0.87rem; line-height: 1.75; margin-bottom: 20px; }
+    .footer-social { display: flex; gap: 10px; }
+    .social-btn {
+      width: 36px; height: 36px; border-radius: 50%;
+      background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.14);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.9rem; text-decoration: none; color: rgba(255,255,255,0.70);
+      transition: all .2s;
+    }
+    .social-btn:hover { background: var(--gold); color: var(--white); border-color: var(--gold); }
+    .footer-col h4 { font-family: 'Playfair Display', serif; font-weight: 700; color: var(--white); margin-bottom: 18px; font-size: 0.95rem; }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: 10px; }
+    .footer-col ul li a { color: rgba(255,255,255,0.60); text-decoration: none; font-size: 0.87rem; transition: color .2s; }
+    .footer-col ul li a:hover { color: var(--gold2); }
+    .footer-bottom {
+      max-width: 1200px; margin: 0 auto;
+      border-top: 1px solid rgba(255,255,255,0.10);
+      padding-top: 24px;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 12px;
+    }
+    .footer-bottom p { font-size: 0.82rem; color: rgba(255,255,255,0.45); }
+    .footer-80g {
+      display: flex; align-items: center; gap: 8px;
+      background: rgba(230,148,26,0.15); border: 1px solid rgba(230,148,26,0.30);
+      border-radius: 50px; padding: 6px 14px;
+      font-size: 0.78rem; font-weight: 600; color: var(--gold2);
+    }
+
+    /* ── WHATSAPP FLOAT ── */
+    .wa-float {
+      position: fixed; bottom: 28px; right: 28px; z-index: 900;
+      width: 56px; height: 56px; border-radius: 50%;
+      background: #25D366; color: var(--white);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem; text-decoration: none;
+      box-shadow: 0 6px 24px rgba(37,211,102,0.45);
+      transition: all .3s; animation: wa-bounce 2s ease 2s both;
+    }
+    .wa-float:hover { transform: scale(1.1); box-shadow: 0 10px 32px rgba(37,211,102,0.55); }
+    @keyframes wa-bounce { 0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)} }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .reveal {
+      opacity: 0; transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .hero-inner { grid-template-columns: 1fr; gap: 40px; text-align: center; }
+      .hero-visual { display: none; }
+      .hero-actions { justify-content: center; }
+      .hero-stats { justify-content: center; }
+      .program-grid { grid-template-columns: 1fr 1fr; }
+      .impact-grid { grid-template-columns: repeat(2, 1fr); }
+      .donate-inner { grid-template-columns: 1fr; }
+      .how-steps { grid-template-columns: repeat(2, 1fr); gap: 36px; }
+      .how-steps::before { display: none; }
+      .test-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 560px) {
+      .program-grid { grid-template-columns: 1fr; }
+      .how-steps { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .impact-grid { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#" class="nav-logo">
+    <img src="logo.png" alt="Kamaldaha Foundation Logo" onerror="this.style.display='none';this.nextElementSibling.querySelector('.nav-logo-name').style.fontSize='1.2rem'"/>
+    <div class="nav-logo-text">
+      <div class="nav-logo-name">KAMALDAHA</div>
+      <div class="nav-logo-sub">Foundation</div>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#programs">Programs</a></li>
+    <li><a href="#impact">Our Impact</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#volunteer">Volunteer</a></li>
+    <a href="#donate" class="btn-nav">💛 Donate Now</a>
+  </ul>
+  <button class="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-blob blob1"></div>
+  <div class="hero-blob blob2"></div>
+  <div class="hero-blob blob3"></div>
+  <div class="hero-inner">
+    <div class="hero-content">
+      <div class="hero-badge"><span class="dot"></span> Registered NGO · Kamaldaha Foundation</div>
+      <h1>Helping <span>People.</span><br/>Changing <span>Lives.</span></h1>
+      <p class="hero-sub">Kamaldaha Foundation works at the grassroots to lift communities through food, healthcare, shelter, education, and dignity — because every life deserves a chance to flourish.</p>
+      <div class="hero-actions">
+        <a href="#donate" class="btn-primary">💛 Donate Now</a>
+        <a href="#programs" class="btn-outline">🌿 Our Programs →</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat">
+          <div class="stat-num">5,000+</div>
+          <div class="stat-lbl">Lives Touched</div>
+        </div>
+        <div class="stat-div"></div>
+        <div class="stat">
+          <div class="stat-num">12+</div>
+          <div class="stat-lbl">Programs</div>
+        </div>
+        <div class="stat-div"></div>
+        <div class="stat">
+          <div class="stat-num">100%</div>
+          <div class="stat-lbl">Transparent</div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-logo-ring">
+        <div class="hero-logo-inner">
+          <img src="logo.png" alt="Kamaldaha Foundation" onerror="this.outerHTML='<div style=\'font-size:5rem\'>🌱</div>'"/>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MISSION STRIP -->
+<div class="mission-strip">
+  <div class="mission-inner">
+    <div class="mission-item"><span class="mission-icon">🤝</span> Helping the Poor</div>
+    <div class="mission-sep"></div>
+    <div class="mission-item"><span class="mission-icon">🍱</span> Food Support</div>
+    <div class="mission-sep"></div>
+    <div class="mission-item"><span class="mission-icon">🏥</span> Healthcare for All</div>
+    <div class="mission-sep"></div>
+    <div class="mission-item"><span class="mission-icon">🏠</span> Shelter & Basic Needs</div>
+    <div class="mission-sep"></div>
+    <div class="mission-item"><span class="mission-icon">🌏</span> Community Development</div>
+    <div class="mission-sep"></div>
+    <div class="mission-item"><span class="mission-icon">💚</span> Care for Everyone</div>
+  </div>
+</div>
+
+<!-- PROGRAMS -->
+<section class="section programs" id="programs">
+  <div class="section-inner">
+    <div class="section-head reveal">
+      <div class="section-tag">What We Do</div>
+      <h2>Our <em>Programs</em></h2>
+      <p class="section-lead">From emergency food relief to long-term community development, every initiative is designed to create lasting change.</p>
+    </div>
+    <div class="program-grid">
+      <div class="program-card pc-1 reveal">
+        <div class="prog-icon pi-1">🍱</div>
+        <div class="prog-title">Food Support</div>
+        <p class="prog-desc">Daily meals, ration kits, and nutrition programs reaching the most vulnerable families and elderly individuals in our community.</p>
+        <a href="#" class="prog-link">Learn more →</a>
+      </div>
+      <div class="program-card pc-2 reveal">
+        <div class="prog-icon pi-2">🏥</div>
+        <div class="prog-title">Healthcare for All</div>
+        <p class="prog-desc">Free medical camps, medicine distribution, and health awareness drives ensuring no one is denied care due to poverty.</p>
+        <a href="#" class="prog-link">Learn more →</a>
+      </div>
+      <div class="program-card pc-3 reveal">
+        <div class="prog-icon pi-3">🏠</div>
+        <div class="prog-title">Shelter & Housing</div>
+        <p class="prog-desc">Emergency shelter support, home repair for the elderly, and assistance programs for families living in unsafe conditions.</p>
+        <a href="#" class="prog-link">Learn more →</a>
+      </div>
+      <div class="program-card pc-4 reveal">
+        <div class="prog-icon pi-4">🎓</div>
+        <div class="prog-title">Education Support</div>
+        <p class="prog-desc">Scholarships, school supplies, and tutoring programs to keep underprivileged children in school and on track for a brighter future.</p>
+        <a href="#" class="prog-link">Learn more →</a>
+      </div>
+      <div class="program-card pc-5 reveal">
+        <div class="prog-icon pi-5">👴</div>
+        <div class="prog-title">Elderly Care</div>
+        <p class="prog-desc">Dedicated support for senior citizens — home visits, companionship, healthcare, and essential supplies to live with dignity.</p>
+        <a href="#" class="prog-link">Learn more →</a>
+      </div>
+      <div class="program-card pc-6 reveal">
+        <div class="prog-icon pi-6">🌏</div>
+        <div class="prog-title">Community Development</div>
+        <p class="prog-desc">Skill training, women empowerment, and livelihood programs to help communities become self-reliant and resilient.</p>
+        <a href="#" class="prog-link">Learn more →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- IMPACT -->
+<section class="section impact" id="impact">
+  <div class="section-inner">
+    <div class="section-head reveal">
+      <div class="section-tag">Our Impact</div>
+      <h2>Numbers That<br/><em>Tell Our Story</em></h2>
+      <p class="section-lead">Every donation, every volunteer hour, every act of kindness has led to real change in real lives.</p>
+    </div>
+    <div class="impact-grid">
+      <div class="impact-card reveal">
+        <div class="impact-num">5,000+</div>
+        <div class="impact-label">People Helped</div>
+      </div>
+      <div class="impact-card reveal">
+        <div class="impact-num">1,200+</div>
+        <div class="impact-label">Meals Served Daily</div>
+      </div>
+      <div class="impact-card reveal">
+        <div class="impact-num">800+</div>
+        <div class="impact-label">Medical Checkups Done</div>
+      </div>
+      <div class="impact-card reveal">
+        <div class="impact-num">300+</div>
+        <div class="impact-label">Families Supported</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DONATE -->
+<section class="section donate" id="donate">
+  <div class="section-inner">
+
+    <!-- TOP BANNER -->
+    <div class="monthly-banner reveal">
+      <div class="mb-left">
+        <div class="mb-icon">🌱</div>
+        <div>
+          <div class="mb-title">Sirf ₹50 ya ₹100 har mahine</div>
+          <div class="mb-sub">Chhoti raqam, badi zimmedari — aap bhi badlav ka hissa ban sakte hain</div>
+        </div>
+      </div>
+      <div class="mb-members">
+        <div class="mb-avatars">
+          <span class="mav" style="background:var(--green)">R</span>
+          <span class="mav" style="background:var(--teal)">P</span>
+          <span class="mav" style="background:var(--gold)">A</span>
+          <span class="mav" style="background:var(--rose)">S</span>
+          <span class="mav mav-more">+240</span>
+        </div>
+        <div class="mb-count">Monthly Saathis already joined</div>
+      </div>
+    </div>
+
+    <div class="donate-inner">
+      <!-- LEFT -->
+      <div class="donate-left reveal">
+        <div class="section-tag">Bano Hamare Saathi</div>
+        <h2>Har Mahine <em>Ek Kadam</em> Kisi ke Liye</h2>
+        <p>Bade sapne, chhoti shuruaat. ₹50 ya ₹100 har mahine — ek chai ki keemat mein aap kisi ki zindagi badal sakte hain. Regular saathion ki wajah se hum planning kar paate hain aur zyada log tak pahunch paate hain.</p>
+
+        <!-- IMPACT PILLS -->
+        <div class="impact-pills">
+          <div class="impact-pill">
+            <div class="ip-amt">₹50/mo</div>
+            <div class="ip-desc">= 5 logon ke liye ek din ka khaana</div>
+          </div>
+          <div class="impact-pill">
+            <div class="ip-amt">₹100/mo</div>
+            <div class="ip-desc">= Ek bachche ki ek mahine ki copy-kitab</div>
+          </div>
+          <div class="impact-pill ip-highlight">
+            <div class="ip-amt">₹50 × 12</div>
+            <div class="ip-desc">= Ek poore saal ka saath — sirf ₹600 mein!</div>
+          </div>
+        </div>
+
+        <!-- UPI BOX -->
+        <div class="upi-box">
+          <div class="upi-label">📱 Scan & Pay via UPI · Har Mahine</div>
+          <div class="qr-placeholder">📱</div>
+          <p style="font-size:0.78rem;color:var(--muted);margin-bottom:10px;">UPI ID</p>
+          <div class="upi-id">kamaldaha@upi</div>
+          <div style="margin-top:14px;display:flex;gap:8px;align-items:center;justify-content:center;flex-wrap:wrap;">
+            <span class="upi-badge">📲 PhonePe</span>
+            <span class="upi-badge">💰 GPay</span>
+            <span class="upi-badge">🏦 Paytm</span>
+            <span class="upi-badge">💳 BHIM</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: MEMBERSHIP CARD -->
+      <div class="reveal">
+        <div class="donate-card">
+
+          <!-- MEMBERSHIP HEADER -->
+          <div class="member-header">
+            <div class="member-badge">🌙 Monthly Saathi Program</div>
+            <p class="member-sub">Sirf ek baar fill karo — har mahine automatic reminder milega</p>
+          </div>
+
+          <!-- PLAN SELECTOR -->
+          <p style="font-size:0.8rem;font-weight:700;color:var(--muted);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:12px;">Apna plan chunein</p>
+          <div class="plan-grid">
+            <div class="plan-card active" onclick="selectPlan(this, 50)">
+              <div class="plan-badge">Sabse Popular</div>
+              <div class="plan-amt">₹50</div>
+              <div class="plan-freq">/ mahine</div>
+              <div class="plan-desc">Chhoti shuruaat,<br/>bada dil</div>
+              <div class="plan-year">= ₹600 / saal</div>
+            </div>
+            <div class="plan-card" onclick="selectPlan(this, 100)">
+              <div class="plan-badge" style="background:var(--gold);color:#fff;">Zyada Asar</div>
+              <div class="plan-amt">₹100</div>
+              <div class="plan-freq">/ mahine</div>
+              <div class="plan-desc">Double impact,<br/>double khushi</div>
+              <div class="plan-year">= ₹1,200 / saal</div>
+            </div>
+          </div>
+
+          <!-- FORM -->
+          <div class="member-form">
+            <div class="form-row">
+              <input class="custom-input" type="text" placeholder="Aapka poora naam *" id="memberName"/>
+            </div>
+            <div class="form-row">
+              <input class="custom-input" type="tel" placeholder="WhatsApp number (10 digits) *" id="memberPhone" maxlength="10"/>
+            </div>
+            <div class="form-row">
+              <input class="custom-input" type="email" placeholder="Email (certificate ke liye)" id="memberEmail"/>
+            </div>
+          </div>
+
+          <div class="donate-note">
+            <span>💌</span>
+            <span>Join karte hi aapko WhatsApp par welcome message + Digital Saathi Certificate milega. Har mahine UPI reminder bhi aayega.</span>
+          </div>
+
+          <button class="btn-donate" onclick="handleDonate()">
+            🌱 Monthly Saathi Banein &nbsp;·&nbsp; ₹<span id="donateAmt">50</span>/mo
+          </button>
+
+          <div class="trust-row">
+            <span>🔒 Secure</span>
+            <span>·</span>
+            <span>📄 Certificate milega</span>
+            <span>·</span>
+            <span>❌ Kabhi bhi band karo</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="section how" id="about">
+  <div class="section-inner">
+    <div class="section-head reveal">
+      <div class="section-tag">Transparent Process</div>
+      <h2>How Your <em>Donation Works</em></h2>
+      <p class="section-lead">We believe in full transparency. Here's exactly how your contribution reaches those who need it most.</p>
+    </div>
+    <div class="how-steps">
+      <div class="how-step reveal">
+        <div class="step-num">1</div>
+        <div class="step-title">You Donate</div>
+        <p class="step-desc">Choose your amount and donate securely via UPI, card, or net banking in seconds.</p>
+      </div>
+      <div class="how-step reveal">
+        <div class="step-num">2</div>
+        <div class="step-title">We Allocate</div>
+        <p class="step-desc">100% of donations go directly to programs. Zero administrative overhead from your gift.</p>
+      </div>
+      <div class="how-step reveal">
+        <div class="step-num">3</div>
+        <div class="step-title">We Deliver</div>
+        <p class="step-desc">Our ground team delivers food, medicine, and support directly to families in need.</p>
+      </div>
+      <div class="how-step reveal">
+        <div class="step-num">4</div>
+        <div class="step-title">You're Updated</div>
+        <p class="step-desc">Receive your donor certificate, 80G receipt, and WhatsApp impact updates automatically.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="section testimonials" id="volunteer">
+  <div class="section-inner">
+    <div class="section-head reveal">
+      <div class="section-tag">Stories of Hope</div>
+      <h2>Voices from Our <em>Community</em></h2>
+      <p class="section-lead">Real people, real impact. See how Kamaldaha Foundation has changed lives.</p>
+    </div>
+    <div class="test-grid">
+      <div class="test-card reveal">
+        <div class="stars">★★★★★</div>
+        <p class="test-quote">"During the hardest months, Kamaldaha Foundation was there with food and medicine. They didn't just help us survive — they restored our hope."</p>
+        <div class="test-author">
+          <div class="test-avatar ta-1">R</div>
+          <div>
+            <div class="test-name">Ramesh K.</div>
+            <div class="test-loc">Beneficiary, Kathmandu</div>
+          </div>
+        </div>
+      </div>
+      <div class="test-card reveal">
+        <div class="stars">★★★★★</div>
+        <p class="test-quote">"I donated monthly for a year. The WhatsApp updates and impact reports make me feel truly connected to every family we're helping together."</p>
+        <div class="test-author">
+          <div class="test-avatar ta-2">P</div>
+          <div>
+            <div class="test-name">Priya S.</div>
+            <div class="test-loc">Monthly Donor</div>
+          </div>
+        </div>
+      </div>
+      <div class="test-card reveal">
+        <div class="stars">★★★★★</div>
+        <p class="test-quote">"Volunteering with Kamaldaha Foundation changed my perspective on life. Their work is genuine, transparent, and truly life-changing."</p>
+        <div class="test-author">
+          <div class="test-avatar ta-3">A</div>
+          <div>
+            <div class="test-name">Anil M.</div>
+            <div class="test-loc">Volunteer</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- JOIN CTA -->
+<section class="join">
+  <div class="join-inner">
+    <div class="section-tag" style="background:rgba(230,148,26,0.20);color:var(--gold2);">Together We Rise</div>
+    <h2>Building a <em style="color:var(--gold2)">Better Society</em><br/>Starts with You</h2>
+    <p>Join thousands of compassionate donors, volunteers, and changemakers who believe every person deserves dignity, care, and opportunity.</p>
+    <div class="join-actions">
+      <a href="#donate" class="btn-white">💛 Donate Today</a>
+      <a href="#" class="btn-ghost-white">🌿 Become a Volunteer</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="footer-logo">
+        <img src="logo.png" alt="Kamaldaha Foundation" onerror="this.style.display='none'"/>
+        <div class="footer-logo-name">KAMALDAHA FOUNDATION</div>
+      </div>
+      <p class="footer-desc">Helping People. Changing Lives. Building a Better Society. We work at the grassroots to uplift communities across Nepal with compassion and integrity.</p>
+      <div class="footer-social">
+        <a href="#" class="social-btn">f</a>
+        <a href="#" class="social-btn">in</a>
+        <a href="#" class="social-btn">tw</a>
+        <a href="#" class="social-btn">yt</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Programs</h4>
+      <ul>
+        <li><a href="#">Food Support</a></li>
+        <li><a href="#">Healthcare</a></li>
+        <li><a href="#">Shelter</a></li>
+        <li><a href="#">Education</a></li>
+        <li><a href="#">Elderly Care</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Get Involved</h4>
+      <ul>
+        <li><a href="#">Donate</a></li>
+        <li><a href="#">Volunteer</a></li>
+        <li><a href="#">Corporate CSR</a></li>
+        <li><a href="#">Fundraise</a></li>
+        <li><a href="#">Partner With Us</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <ul>
+        <li><a href="#">📍 Kathmandu, Nepal</a></li>
+        <li><a href="mailto:info@kamaldahafoundation.org">✉ info@kamaldaha.org</a></li>
+        <li><a href="https://wa.me/977XXXXXXXXXX">💬 WhatsApp Us</a></li>
+        <li><a href="#">📄 Annual Report</a></li>
+        <li><a href="#">80G Certificate</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2024 Kamaldaha Foundation. All rights reserved. Made with 💚 for the community.</p>
+    <div class="footer-80g">🏛️ 80G Tax Exempt · Registered NGO</div>
+  </div>
+</footer>
+
+<!-- WHATSAPP FLOAT -->
+<a href="https://wa.me/977XXXXXXXXXX?text=Hi%20Kamaldaha%20Foundation%2C%20I%20want%20to%20donate%20and%20support%20your%20work!" class="wa-float" target="_blank" title="Chat on WhatsApp">💬</a>
+
+<script>
+  // Navbar scroll
+  window.addEventListener('scroll', () => {
+    document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 30);
+  });
+
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 80);
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => observer.observe(el));
+
+  // Monthly plan selector
+  let selectedPlan = 50;
+  function selectPlan(card, amt) {
+    document.querySelectorAll('.plan-card').forEach(c => c.classList.remove('active'));
+    card.classList.add('active');
+    selectedPlan = amt;
+    document.getElementById('donateAmt').textContent = amt;
+  }
+
+  function handleDonate() {
+    const name  = document.getElementById('memberName').value.trim();
+    const phone = document.getElementById('memberPhone').value.trim();
+    if (!name)  { alert('Kripya apna naam darj karein।'); document.getElementById('memberName').focus(); return; }
+    if (!phone || phone.length < 10) { alert('Kripya sahi WhatsApp number darj karein।'); document.getElementById('memberPhone').focus(); return; }
+    alert(`🌱 Shukriya, ${name}!\n\nAap ₹${selectedPlan}/mahine ke Monthly Saathi ban gaye hain!\n\nAapke WhatsApp (${phone}) par abhi welcome message aur Digital Saathi Certificate bheja ja raha hai.\n\n💛 Kamaldaha Foundation ka dil se dhanyavaad!`);
+  }
+
+  // Animated counter
+  const counters = document.querySelectorAll('.impact-num');
+  const counterObs = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const el = entry.target;
+        const text = el.textContent;
+        const match = text.match(/[\d,]+/);
+        if (!match) return;
+        const target = parseInt(match[0].replace(/,/g,''));
+        const suffix = text.replace(match[0],'');
+        let start = 0;
+        const step = target / 60;
+        const timer = setInterval(() => {
+          start = Math.min(start + step, target);
+          el.textContent = Math.floor(start).toLocaleString('en-IN') + suffix;
+          if (start >= target) clearInterval(timer);
+        }, 25);
+        counterObs.unobserve(el);
+      }
+    });
+  }, { threshold: 0.5 });
+  counters.forEach(c => counterObs.observe(c));
+</script>
+</body>
+</html>
